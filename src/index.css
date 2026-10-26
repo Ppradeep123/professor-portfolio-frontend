@@ -1,0 +1,77 @@
+
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  background: #FAF9F6;
+}
+
+/* Admin dark mode only */
+
+.admin-dark {
+  background-color: #111827;
+  color: #e5e7eb;
+  min-height: 100vh;
+}
+
+/* Backgrounds */
+.admin-dark .bg-white {
+  background-color: #1f2937;
+}
+
+.admin-dark .bg-\[\#FAF9F6\],
+.admin-dark .bg-\[\#F3F0E8\] {
+  background-color: #111827;
+}
+
+.admin-dark .bg-\[\#E9EEDC\] {
+  background-color: #374151;
+}
+
+/* Text */
+.admin-dark .text-\[\#41634C\],
+.admin-dark .text-\[\#54765C\],
+.admin-dark .text-\[\#343C32\] {
+  color: #d1fae5;
+}
+
+.admin-dark .text-gray-500,
+.admin-dark .text-gray-600 {
+  color: #9ca3af;
+}
+
+/* Borders */
+.admin-dark .border-\[\#E9E5DB\],
+.admin-dark .border-\[\#E2E4DC\] {
+  border-color: #374151;
+}
+
+/* Inputs */
+.admin-dark input,
+.admin-dark textarea,
+.admin-dark select {
+  background-color: #111827;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+.admin-dark input::placeholder,
+.admin-dark textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Buttons and links */
+.admin-dark button,
+.admin-dark a {
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Hover states */
+.admin-dark .hover\:bg-\[\#E9EEDC\]:hover {
+  background-color: #374151;
+}
