@@ -6,34 +6,34 @@ export default function AdminLogin() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
- 
-const handleSubmit = async (e) => {
-  e.preventDefault();
 
-  try {
-    const response = await fetch(
-      "http://localhost/professor-api/auth/login.php",
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "http://professor-portfolio-api.onrender.comauth/login.php",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, password })
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        window.location.href = "/admin/dashboard";
+      } else {
+        alert(data.message || "Login failed");
       }
-    );
-
-    const data = await response.json();
-
-    if (response.ok && data.success) {
-      window.location.href = "/admin/dashboard";
-    } else {
-      alert(data.message || "Login failed");
+    } catch (error) {
+      alert("Unable to connect to the server");
     }
-  } catch (error) {
-    alert("Unable to connect to the server");
-  }
-};
+  };
 
 
   return (
@@ -41,7 +41,7 @@ const handleSubmit = async (e) => {
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-[#54765C]">
-             Admin
+            Admin
           </h1>
           <p className="mt-2 text-gray-500">
             Sign in to manage your website

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const API_BASE = (
     import.meta.env.VITE_API_BASE_URL ||
-    "http://localhost/professor-api/"
+    "http://professor-portfolio-api.onrender.com"
 ).replace(/\/+$/, "") + "/";
 
 const API = `${API_BASE}education`;
@@ -126,45 +126,45 @@ export default function EducationAdmin() {
             setBusy(false);
         }
     }
-    
-async function handleDelete(id) {
-    if (!window.confirm("Delete this qualification?")) return;
 
-    setBusy(true);
-    setError("");
-    setMessage("");
+    async function handleDelete(id) {
+        if (!window.confirm("Delete this qualification?")) return;
 
-    try {
-        // Get the CSRF token
-        const csrfToken = await getCsrfToken();
+        setBusy(true);
+        setError("");
+        setMessage("");
 
-        const response = await fetch(`${API}/delete.php`, {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-Token": csrfToken
-            },
-            body: JSON.stringify({ id })
-        });
+        try {
+            // Get the CSRF token
+            const csrfToken = await getCsrfToken();
 
-        const data = await response.json();
+            const response = await fetch(`${API}/delete.php`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-Token": csrfToken
+                },
+                body: JSON.stringify({ id })
+            });
 
-        if (!response.ok || !data.success) {
-            throw new Error(data.message || "Delete failed");
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "Delete failed");
+            }
+
+            setMessage(data.message || "Qualification deleted successfully.");
+
+            // Refresh the education list
+            await loadEducation();
+
+        } catch (err) {
+            setError(err.message || "Failed to delete qualification.");
+        } finally {
+            setBusy(false);
         }
-
-        setMessage(data.message || "Qualification deleted successfully.");
-
-        // Refresh the education list
-        await loadEducation();
-
-    } catch (err) {
-        setError(err.message || "Failed to delete qualification.");
-    } finally {
-        setBusy(false);
     }
-}
 
     const fields = [
         { name: "degree", label: "Degree", required: true },

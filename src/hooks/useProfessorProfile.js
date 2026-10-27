@@ -12,7 +12,7 @@ export default function useProfessorProfile() {
     async function fetchProfile() {
       try {
         const response = await fetch(
-          "http://localhost/professor-api/profile/get.php"
+          "http://professor-portfolio-api.onrender.comprofile/get.php"
         );
 
         if (!response.ok) {

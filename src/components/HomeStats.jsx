@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const API_BASE =
     import.meta.env.VITE_API_BASE_URL ||
-    "http://localhost/professor-api/";
+    "http://professor-portfolio-api.onrender.com";
 
 export default function HomeStats({ profile }) {
     const [counts, setCounts] = useState({

@@ -12,7 +12,7 @@ import {
 
 const API_BASE = (
   import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost/professor-api/"
+  "http://professor-portfolio-api.onrender.com"
 ).replace(/\/+$/, "");
 
 export default function InquiriesAdmin() {
@@ -259,11 +259,10 @@ export default function InquiriesAdmin() {
                 key={option.value}
                 type="button"
                 onClick={() => setFilter(option.value)}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${
-                  filter === option.value
-                    ? "bg-[#54765C] text-white"
-                    : "bg-[#FAF9F6] text-gray-600 hover:bg-[#E9EEDC]"
-                }`}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition ${filter === option.value
+                  ? "bg-[#54765C] text-white"
+                  : "bg-[#FAF9F6] text-gray-600 hover:bg-[#E9EEDC]"
+                  }`}
               >
                 {option.label}
               </button>
@@ -326,9 +325,8 @@ export default function InquiriesAdmin() {
               return (
                 <div
                   key={inquiry.id}
-                  className={`p-5 hover:bg-[#FAF9F6] transition ${
-                    isUnread ? "bg-[#F6F9F1]" : ""
-                  }`}
+                  className={`p-5 hover:bg-[#FAF9F6] transition ${isUnread ? "bg-[#F6F9F1]" : ""
+                    }`}
                 >
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
 

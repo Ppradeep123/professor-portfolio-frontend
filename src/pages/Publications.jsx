@@ -14,70 +14,70 @@ function Publications() {
   const [selectedYear, setSelectedYear] = useState("All");
   const [visibleCount, setVisibleCount] = useState(6);
 
-const publicationTypes = [
-  "All",
-  "Journal",
-  "Conference",
-  "Book",
-  "Book Chapter",
-  "Patent",
-  "Other",
-];
-const years = [
-  "All",
-  ...new Set(
-    publications
-      .map((pub) => String(pub.year ?? ""))
-      .filter(Boolean)
-  ),
-].sort((a, b) => {
-  if (a === "All") return -1;
-  if (b === "All") return 1;
-  return Number(b) - Number(a);
-});
+  const publicationTypes = [
+    "All",
+    "Journal",
+    "Conference",
+    "Book",
+    "Book Chapter",
+    "Patent",
+    "Other",
+  ];
+  const years = [
+    "All",
+    ...new Set(
+      publications
+        .map((pub) => String(pub.year ?? ""))
+        .filter(Boolean)
+    ),
+  ].sort((a, b) => {
+    if (a === "All") return -1;
+    if (b === "All") return 1;
+    return Number(b) - Number(a);
+  });
 
-const filteredPublications = (publications || []).filter((pub) => {
-  // Search by title, author, or journal
-  const searchText = search.toLowerCase().trim();
+  const filteredPublications = (publications || []).filter((pub) => {
+    // Search by title, author, or journal
+    const searchText = search.toLowerCase().trim();
 
-  const matchesSearch =
-    String(pub.title || "").toLowerCase().includes(searchText) ||
-    String(pub.authors || "").toLowerCase().includes(searchText) ||
-    String(pub.journal || "").toLowerCase().includes(searchText);
+    const matchesSearch =
+      String(pub.title || "").toLowerCase().includes(searchText) ||
+      String(pub.authors || "").toLowerCase().includes(searchText) ||
+      String(pub.journal || "").toLowerCase().includes(searchText);
 
-  // Filter by publication type
-  const matchesType =
-    selectedType === "All" ||
-    pub.type === selectedType;
+    // Filter by publication type
+    const matchesType =
+      selectedType === "All" ||
+      pub.type === selectedType;
 
-  // Filter by publication year
-  const matchesYear =
-    selectedYear === "All" ||
-    String(pub.year) === String(selectedYear);
+    // Filter by publication year
+    const matchesYear =
+      selectedYear === "All" ||
+      String(pub.year) === String(selectedYear);
 
-  return matchesSearch && matchesType && matchesYear;
-});
-const resetFilters = () => {
-  setSearch("");
-  setSelectedType("All");
-  setSelectedYear("All");
-};
-
-const visiblePublications = filteredPublications;
-const getTypeStyle = (type) => {
-  const styles = {
-    Journal: "bg-green-100 text-green-700",
-    Conference: "bg-purple-100 text-purple-700",
-    Book: "bg-amber-100 text-amber-700",
-    "Book Chapter": "bg-orange-100 text-orange-700",
-    Patent: "bg-pink-100 text-pink-700",
-    Other: "bg-gray-100 text-gray-700",
+    return matchesSearch && matchesType && matchesYear;
+  });
+  const resetFilters = () => {
+    setSearch("");
+    setSelectedType("All");
+    setSelectedYear("All");
   };
 
-  return styles[type] || "bg-gray-100 text-gray-700";
-};
+  const visiblePublications = filteredPublications;
+  const getTypeStyle = (type) => {
+    const styles = {
+      Journal: "bg-green-100 text-green-700",
+      Conference: "bg-purple-100 text-purple-700",
+      Book: "bg-amber-100 text-amber-700",
+      "Book Chapter": "bg-orange-100 text-orange-700",
+      Patent: "bg-pink-100 text-pink-700",
+      Other: "bg-gray-100 text-gray-700",
+    };
+
+    return styles[type] || "bg-gray-100 text-gray-700";
+  };
   const [filter, setFilter] = useState("All");
-  const API = "http://localhost/professor-api/publications/get.php";
+  const API = "http://professor-portfolio-api.onrender.compublications/get.php";
   useEffect(() => {
     const controller = new AbortController();
 
@@ -187,8 +187,8 @@ const getTypeStyle = (type) => {
                 type="button"
                 onClick={() => setFilter(type)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${filter === type
-                    ? "bg-[#54765C] text-white"
-                    : "bg-white text-[#41634C] border border-[#E9E5DB]"
+                  ? "bg-[#54765C] text-white"
+                  : "bg-white text-[#41634C] border border-[#E9E5DB]"
                   }`}
               >
                 {type}
@@ -284,7 +284,7 @@ const getTypeStyle = (type) => {
 
                     {item.pdf_file && (
                       <a
-                        href={`http://localhost/professor-api/${item.pdf_file}`}
+                        href={`http://professor-portfolio-api.onrender.com${item.pdf_file}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#41634C] underline font-medium"

@@ -5,7 +5,7 @@ import { Award, ArrowRight } from "lucide-react";
 
 const API =
   (import.meta.env.VITE_API_BASE_URL ||
-    "http://localhost/professor-api/").replace(/\/+$/, "") +
+    "http://professor-portfolio-api.onrender.com").replace(/\/+$/, "") +
   "/achievements/get.php";
 
 export default function LatestAchievements() {

@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
   useEffect(() => {
     let active = true;
 
-    fetch("http://localhost/professor-api/auth/session.php", {
+    fetch("http://professor-portfolio-api.onrender.comauth/session.php", {
       credentials: "include"
     })
       .then((response) => {

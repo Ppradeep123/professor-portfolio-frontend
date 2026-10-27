@@ -5,38 +5,38 @@ export default function AdminHeader() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-  try {
-    const response = await fetch(
-      "http://localhost/professor-api/auth/logout.php",
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
+    try {
+      const response = await fetch(
+        "http://professor-portfolio-api.onrender.comauth/logout.php",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        alert(result.message || "Logout failed. Please try again.");
+        return;
       }
-    );
 
-    const result = await response.json();
+      // Notify all other tabs in this browser.
+      localStorage.setItem(
+        "admin_logged_out",
+        Date.now().toString()
+      );
 
-    if (!response.ok || !result.success) {
-      alert(result.message || "Logout failed. Please try again.");
-      return;
+      // Redirect the current tab.
+      window.location.replace("/admin/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert("Unable to log out. Please check your connection.");
     }
-
-    // Notify all other tabs in this browser.
-    localStorage.setItem(
-      "admin_logged_out",
-      Date.now().toString()
-    );
-
-    // Redirect the current tab.
-    window.location.replace("/admin/login");
-  } catch (error) {
-    console.error("Logout error:", error);
-    alert("Unable to log out. Please check your connection.");
-  }
-};
+  };
 
   return (
     <header className="bg-white border-b border-[#E9E5DB] px-6 py-4 flex justify-between items-center">

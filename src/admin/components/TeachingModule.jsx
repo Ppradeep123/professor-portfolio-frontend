@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const API = "http://localhost/professor-api/teaching/manage.php";
+const API = "http://professor-portfolio-api.onrender.comteaching/manage.php";
 
 export default function TeachingModule({
   module,

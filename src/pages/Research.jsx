@@ -7,7 +7,7 @@ function Research() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const API = "http://localhost/professor-api/research/get.php";
+  const API = "http://professor-portfolio-api.onrender.comresearch/get.php";
   const [publications, setPublications] = useState([]);
   const [loadingPublications, setLoadingPublications] = useState(true);
   const [publicationError, setPublicationError] = useState("");
@@ -85,35 +85,35 @@ function Research() {
   const [search, setSearch] = useState("");
   const [selectedType, setSelectedType] = useState("All");
 
-  
-const filteredPublications = useMemo(() => {
-  return publications
-    .filter((publication) => {
-      const keyword = search.toLowerCase().trim();
 
-      const title = String(publication.title ?? "");
-      const authors = String(publication.authors ?? "");
-      const journal = String(publication.journal_name ?? "");
-      const publisher = String(publication.publisher ?? "");
+  const filteredPublications = useMemo(() => {
+    return publications
+      .filter((publication) => {
+        const keyword = search.toLowerCase().trim();
 
-      const matchesSearch =
-        title.toLowerCase().includes(keyword) ||
-        authors.toLowerCase().includes(keyword) ||
-        journal.toLowerCase().includes(keyword) ||
-        publisher.toLowerCase().includes(keyword);
+        const title = String(publication.title ?? "");
+        const authors = String(publication.authors ?? "");
+        const journal = String(publication.journal_name ?? "");
+        const publisher = String(publication.publisher ?? "");
 
-      const matchesType =
-        selectedType === "All" ||
-        publication.publication_type === selectedType;
+        const matchesSearch =
+          title.toLowerCase().includes(keyword) ||
+          authors.toLowerCase().includes(keyword) ||
+          journal.toLowerCase().includes(keyword) ||
+          publisher.toLowerCase().includes(keyword);
 
-      return matchesSearch && matchesType;
-    })
-    .sort(
-      (a, b) =>
-        Number(b.publication_year ?? 0) -
-        Number(a.publication_year ?? 0)
-    );
-}, [publications, search, selectedType]);
+        const matchesType =
+          selectedType === "All" ||
+          publication.publication_type === selectedType;
+
+        return matchesSearch && matchesType;
+      })
+      .sort(
+        (a, b) =>
+          Number(b.publication_year ?? 0) -
+          Number(a.publication_year ?? 0)
+      );
+  }, [publications, search, selectedType]);
 
 
   return (
@@ -241,7 +241,7 @@ const filteredPublications = useMemo(() => {
         <div className="max-w-5xl mx-auto px-6">
 
           {/* SECTION HEADER */}
-          <div className="text-center mb-12"  id="publications">
+          <div className="text-center mb-12" id="publications">
             <span className="uppercase tracking-widest text-xs font-bold text-[#54765C] bg-[#E9EEDC] px-4 py-1.5 rounded-full inline-block mb-3">
               Academic Works
             </span>
@@ -277,7 +277,7 @@ const filteredPublications = useMemo(() => {
                 const pdfUrl = publication.pdf_file
                   ? new URL(
                     publication.pdf_file,
-                    "http://localhost/professor-api/"
+                    "http://professor-portfolio-api.onrender.com"
                   ).href
                   : null;
 

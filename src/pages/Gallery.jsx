@@ -14,8 +14,8 @@ import {
   FolderOpen,
 } from "lucide-react";
 
-const API = "http://localhost/professor-api/gallery/get.php";
-const FILE_BASE = "http://localhost/professor-api/";
+const API = "http://professor-portfolio-api.onrender.comgallery/get.php";
+const FILE_BASE = "http://professor-portfolio-api.onrender.com";
 
 function getImageUrl(path) {
   if (
@@ -297,11 +297,10 @@ export default function Gallery() {
                 key={item}
                 type="button"
                 onClick={() => setCategory(item)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                  category === item
-                    ? "bg-[#41634C] text-white"
-                    : "bg-[#F3F5F0] text-[#647166] hover:bg-[#E5EDE2]"
-                }`}
+                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${category === item
+                  ? "bg-[#41634C] text-white"
+                  : "bg-[#F3F5F0] text-[#647166] hover:bg-[#E5EDE2]"
+                  }`}
               >
                 {item}
               </button>

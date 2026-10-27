@@ -20,9 +20,9 @@ import {
 } from "lucide-react";
 
 const API =
-  "http://localhost/professor-api/e-content/get.php";
+  "http://professor-portfolio-api.onrender.come-content/get.php";
 
-const FILE_BASE = "http://localhost/professor-api/";
+const FILE_BASE = "http://professor-portfolio-api.onrender.com";
 
 const CONTENT_TYPES = [
   "All",
@@ -488,11 +488,10 @@ export default function EContent() {
                 key={type}
                 type="button"
                 onClick={() => setActiveType(type)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                  activeType === type
-                    ? "bg-[#41634C] text-white"
-                    : "bg-[#F3F5F0] text-[#647166] hover:bg-[#E5EDE2]"
-                }`}
+                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${activeType === type
+                  ? "bg-[#41634C] text-white"
+                  : "bg-[#F3F5F0] text-[#647166] hover:bg-[#E5EDE2]"
+                  }`}
               >
                 {type}
               </button>
@@ -577,14 +576,14 @@ export default function EContent() {
                 subject !== "All" ||
                 semester !== "All" ||
                 activeType !== "All") && (
-                <button
-                  type="button"
-                  onClick={resetFilters}
-                  className="text-sm font-semibold text-[#54765C] hover:underline"
-                >
-                  Clear all filters
-                </button>
-              )}
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="text-sm font-semibold text-[#54765C] hover:underline"
+                  >
+                    Clear all filters
+                  </button>
+                )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

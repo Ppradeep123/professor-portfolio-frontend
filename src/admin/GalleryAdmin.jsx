@@ -24,7 +24,7 @@ import {
 
 const API_BASE = (
   import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost/professor-api/"
+  "http://professor-portfolio-api.onrender.com"
 ).replace(/\/+$/, "") + "/";
 
 const API = `${API_BASE}gallery`;
@@ -572,46 +572,46 @@ export default function GalleryAdmin() {
               </div>
 
               {!editingId && (
-  <div className="md:col-span-2">
-    <label className={labelClass}>Upload Images *</label>
+                <div className="md:col-span-2">
+                  <label className={labelClass}>Upload Images *</label>
 
-    <div className="rounded-2xl border-2 border-dashed border-[#C8D7C5] bg-[#F8FBF7] p-6 text-center">
-      <ImagePlus
-        size={35}
-        className="mx-auto text-[#54765C]"
-      />
+                  <div className="rounded-2xl border-2 border-dashed border-[#C8D7C5] bg-[#F8FBF7] p-6 text-center">
+                    <ImagePlus
+                      size={35}
+                      className="mx-auto text-[#54765C]"
+                    />
 
-      <p className="mt-3 font-semibold text-[#41634C]">
-        Choose Gallery Photos
-      </p>
+                    <p className="mt-3 font-semibold text-[#41634C]">
+                      Choose Gallery Photos
+                    </p>
 
-      <p className="mt-1 text-sm text-gray-500">
-        JPG, PNG, WebP — Maximum 5 MB each
-      </p>
+                    <p className="mt-1 text-sm text-gray-500">
+                      JPG, PNG, WebP — Maximum 5 MB each
+                    </p>
 
-      {/* Choose Files button */}
-      <button
-        type="button"
-        onClick={() => fileInputRef.current?.click()}
-        className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#54765C] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3F5F47] focus:outline-none focus:ring-2 focus:ring-[#54765C] focus:ring-offset-2"
-      >
-        <Upload size={17} />
-        Choose Files
-      </button>
+                    {/* Choose Files button */}
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#54765C] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#3F5F47] focus:outline-none focus:ring-2 focus:ring-[#54765C] focus:ring-offset-2"
+                    >
+                      <Upload size={17} />
+                      Choose Files
+                    </button>
 
-      {/* Hidden file input */}
-      <input
-        ref={fileInputRef}
-        id="gallery-images"
-        type="file"
-        accept=".jpg,.jpeg,.png,.webp"
-        multiple
-        onChange={handleFileSelection}
-        className="hidden"
-      />
-    </div>
+                    {/* Hidden file input */}
+                    <input
+                      ref={fileInputRef}
+                      id="gallery-images"
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.webp"
+                      multiple
+                      onChange={handleFileSelection}
+                      className="hidden"
+                    />
+                  </div>
 
-   
+
 
                   {previews.length > 0 && (
                     <div className="mt-5">
@@ -674,8 +674,8 @@ export default function GalleryAdmin() {
                 {editingId
                   ? "Save Changes"
                   : uploading
-                  ? "Uploading..."
-                  : "Upload Photos"}
+                    ? "Uploading..."
+                    : "Upload Photos"}
               </button>
 
               {editingId && (

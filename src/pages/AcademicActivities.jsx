@@ -22,9 +22,9 @@ import {
 } from "lucide-react";
 
 const API =
-  "http://localhost/professor-api/academic-activities/get.php";
+  "http://professor-portfolio-api.onrender.comacademic-activities/get.php";
 
-const FILE_BASE = "http://localhost/professor-api/";
+const FILE_BASE = "http://professor-portfolio-api.onrender.com";
 
 const categories = [
   "All",
@@ -498,11 +498,10 @@ export default function AcademicActivities() {
                 type="button"
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                  activeCategory === category
-                    ? "bg-[#41634C] text-white"
-                    : "bg-[#F3F5F0] text-[#647166] hover:bg-[#E5EDE2]"
-                }`}
+                className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${activeCategory === category
+                  ? "bg-[#41634C] text-white"
+                  : "bg-[#F3F5F0] text-[#647166] hover:bg-[#E5EDE2]"
+                  }`}
               >
                 {category}
               </button>
@@ -586,14 +585,14 @@ export default function AcademicActivities() {
               {(search ||
                 activeCategory !== "All" ||
                 selectedYear !== "All") && (
-                <button
-                  type="button"
-                  onClick={clearFilters}
-                  className="text-sm font-semibold text-[#54765C] hover:underline"
-                >
-                  Clear all filters
-                </button>
-              )}
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="text-sm font-semibold text-[#54765C] hover:underline"
+                  >
+                    Clear all filters
+                  </button>
+                )}
             </div>
 
             {/* YEAR GROUPS / TIMELINE */}

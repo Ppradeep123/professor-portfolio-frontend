@@ -18,8 +18,8 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-const API = "http://localhost/professor-api/e-content/";
-const FILE_BASE = "http://localhost/professor-api/";
+const API = "http://professor-portfolio-api.onrender.come-content/";
+const FILE_BASE = "http://professor-portfolio-api.onrender.com";
 
 const CONTENT_TYPES = [
   "PDF",
@@ -174,9 +174,9 @@ export default function EContentAdmin() {
 
       setMessage(
         data.message ||
-          (editingId
-            ? "Resource updated."
-            : "Resource added.")
+        (editingId
+          ? "Resource updated."
+          : "Resource added.")
       );
 
       resetForm();
@@ -754,8 +754,8 @@ export default function EContentAdmin() {
                               item.content_type === "PDF"
                                 ? ".pdf"
                                 : item.content_type === "PPT"
-                                ? ".ppt,.pptx"
-                                : ".doc,.docx"
+                                  ? ".ppt,.pptx"
+                                  : ".doc,.docx"
                             }
                             onChange={(event) =>
                               setSelectedFiles((previous) => ({

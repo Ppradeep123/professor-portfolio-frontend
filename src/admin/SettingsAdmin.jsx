@@ -4,7 +4,7 @@ import { LockKeyhole, Eye, EyeOff, ShieldCheck } from "lucide-react";
 
 const API_BASE = (
     import.meta.env.VITE_API_BASE_URL ||
-    "http://localhost/professor-api/"
+    "http://professor-portfolio-api.onrender.com"
 ).replace(/\/+$/, "");
 
 export default function SettingsAdmin() {

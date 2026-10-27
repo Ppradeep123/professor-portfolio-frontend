@@ -124,7 +124,7 @@ function About() {
             <div className="relative bg-white p-3 rounded-[2rem] shadow-xl">
               {profile.profile_photo && (
                 <img
-                  src={`http://localhost/professor-api/${profile.profile_photo}`}
+                  src={`http://professor-portfolio-api.onrender.com${profile.profile_photo}`}
                   alt={profile.full_name}
                   className="w-full h-[400px] md:h-[450px] object-cover rounded-[1.5rem]"
                   onError={(e) => {
@@ -247,9 +247,9 @@ function About() {
         </div>
       </section >
 
-    
+
       {/* ACHIEVEMENTS */}
-      
+
       {/* TEACHING PHILOSOPHY */}
       < section className="bg-[#E9EEDC] py-20 md:py-24" >
         <div className="max-w-5xl mx-auto px-6 text-center">

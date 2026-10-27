@@ -22,7 +22,7 @@ import {
   MonitorPlay,
 } from "lucide-react";
 
-const BASE_API = "http://localhost/professor-api/teaching";
+const BASE_API = "http://professor-portfolio-api.onrender.comteaching";
 
 const DAYS = [
   "Monday",
@@ -484,14 +484,13 @@ function TimetableSection({ reloadKey, onRetry }) {
                   const firstOfDay =
                     index === 0 ||
                     sortedRecords[index - 1].day_of_week !==
-                      item.day_of_week;
+                    item.day_of_week;
 
                   return (
                     <tr
                       key={item.id}
-                      className={`border-b border-[#EDF0EA] last:border-b-0 hover:bg-[#F8FAF7] transition-colors ${
-                        firstOfDay ? "border-t-2 border-t-[#DCE8DA]" : ""
-                      }`}
+                      className={`border-b border-[#EDF0EA] last:border-b-0 hover:bg-[#F8FAF7] transition-colors ${firstOfDay ? "border-t-2 border-t-[#DCE8DA]" : ""
+                        }`}
                     >
                       <td className="px-6 py-5">
                         {firstOfDay && (

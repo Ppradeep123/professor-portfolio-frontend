@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-const API_URL = "http://localhost/professor-api/education/get.php";
+const API_URL = "http://professor-portfolio-api.onrender.comeducation/get.php";
 export default function EducationSection() {
     const [education, setEducation] = useState([]);
     const [loading, setLoading] = useState(true);

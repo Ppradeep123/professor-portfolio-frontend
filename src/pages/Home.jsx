@@ -8,7 +8,7 @@ import LatestAchievements from "../components/LatestAchievements";
 import HomeStats from "../components/HomeStats";
 const API_BASE =
   import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost/professor-api/";
+  "http://professor-portfolio-api.onrender.com";
 
 const fileUrl = (path) => {
   if (!path) return "";

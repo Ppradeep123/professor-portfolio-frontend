@@ -5,7 +5,7 @@ import useProfessorProfile from "../hooks/useProfessorProfile";
 
 const API_BASE =
   import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost/professor-api/";
+  "http://professor-portfolio-api.onrender.com";
 
 const initialForm = {
   name: "",
