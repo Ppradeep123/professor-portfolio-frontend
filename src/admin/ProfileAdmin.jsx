@@ -6,8 +6,11 @@ const API_BASE = (
   import.meta.env.VITE_API_BASE_URL ||
   "https://professor-portfolio-api.onrender.com/"
 ).replace(/\/+$/, "") + "/";
-
 const API = `${API_BASE}profile/`;
+
+fetch(`${API}get.php`, {
+  credentials: "include",
+});
 
 async function getCsrfToken() {
     const response = await fetch(
