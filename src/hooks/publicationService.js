@@ -1,9 +1,13 @@
 
-const API_BASE = "http://localhost/professor-api/publications";
+const API_BASE =
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/";
+
+const API = `${API_BASE.replace(/\/+$/, "")}/publications`;
 
 async function getCsrfToken() {
   const response = await fetch(
-    "http://localhost/professor-api/auth/session.php",
+    `${API_BASE}auth/session.php`,
     {
       method: "GET",
       credentials: "include",
@@ -34,7 +38,7 @@ async function readResponse(response) {
 }
 
 export async function getPublications() {
-  const response = await fetch(`${API_BASE}/get.php`, {
+  const response = await fetch(`${API}/get.php`, {
     method: "GET",
     credentials: "include",
   });
@@ -50,7 +54,7 @@ export async function getPublications() {
 export async function savePublication(publication) {
   const csrfToken = await getCsrfToken();
 
-  const response = await fetch(`${API_BASE}/save.php`, {
+  const response = await fetch(`${API}/save.php`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -66,7 +70,7 @@ export async function savePublication(publication) {
 export async function deletePublication(id) {
   const csrfToken = await getCsrfToken();
 
-  const response = await fetch(`${API_BASE}/delete.php`, {
+  const response = await fetch(`${API}/delete.php`, {
     method: "POST",
     credentials: "include",
     headers: {

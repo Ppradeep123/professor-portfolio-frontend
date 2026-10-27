@@ -1,11 +1,16 @@
 
 import { useEffect, useState } from "react";
 
-const API = "http://localhost/professor-api/profile";
+
+const API_BASE =
+    import.meta.env.VITE_API_BASE_URL ||
+    "http://localhost/professor-api/";
+
+const API = `${API_BASE}profile`;
 
 async function getCsrfToken() {
     const response = await fetch(
-        "http://localhost/professor-api/auth/session.php",
+        `${API_BASE}auth/session.php`,
         {
             method: "GET",
             credentials: "include"
@@ -89,44 +94,44 @@ export default function ProfileAdmin() {
     };
 
 
-   
-const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    setSaving(true);
-    setMessage("");
-    setError("");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    try {
-        // Get CSRF token
-        const csrfToken = await getCsrfToken();
+        setSaving(true);
+        setMessage("");
+        setError("");
 
-        // Save profile
-        const response = await fetch(`${API}/update.php`, {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-Token": csrfToken
-            },
-            body: JSON.stringify(form)
-        });
+        try {
+            // Get CSRF token
+            const csrfToken = await getCsrfToken();
 
-        const data = await response.json();
+            // Save profile
+            const response = await fetch(`${API}/update.php`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-Token": csrfToken
+                },
+                body: JSON.stringify(form)
+            });
 
-        if (!response.ok || !data.success) {
-            throw new Error(data.message || "Update failed");
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "Update failed");
+            }
+
+            setMessage("Profile updated successfully!");
+
+        } catch (err) {
+            setError(err.message);
+
+        } finally {
+            setSaving(false);
         }
-
-        setMessage("Profile updated successfully!");
-
-    } catch (err) {
-        setError(err.message);
-
-    } finally {
-        setSaving(false);
-    }
-};
+    };
 
 
 
@@ -160,23 +165,23 @@ const handleSubmit = async (e) => {
         formData.append("photo", photo);
 
 
-        
-try {
-    const csrfToken = await getCsrfToken();
 
-    const response = await fetch(
-        `${API}/upload_photo.php`,
-        {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "X-CSRF-Token": csrfToken
-            },
-            body: formData
-        }
-    );
+        try {
+            const csrfToken = await getCsrfToken();
 
-    const data = await response.json();
+            const response = await fetch(
+                `${API}/upload_photo.php`,
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "X-CSRF-Token": csrfToken
+                    },
+                    body: formData
+                }
+            );
+
+            const data = await response.json();
 
 
             console.log("Upload response:", data);
@@ -185,12 +190,27 @@ try {
                 throw new Error(data.message || "Upload failed");
             }
 
+            const photoUrl = data.photo_url;
+
+            const apiBaseUrl = new URL(
+                API_BASE,
+                window.location.origin
+            );
+
+            const uploadedUrl = new URL(
+                photoUrl,
+                apiBaseUrl
+            );
+
+            const relativePhotoPath = uploadedUrl.href.startsWith(
+                apiBaseUrl.href
+            )
+                ? uploadedUrl.href.slice(apiBaseUrl.href.length)
+                : photoUrl;
+
             setForm((prev) => ({
                 ...prev,
-                profile_photo: data.photo_url.replace(
-                    "http://localhost/professor-api/",
-                    ""
-                )
+                profile_photo: relativePhotoPath
             }));
 
             alert("Photo uploaded successfully!");

@@ -16,24 +16,29 @@ import {
   Building2,
 } from "lucide-react";
 
-const API = "http://localhost/professor-api/academic-activities/";
-const FILE_BASE = "http://localhost/professor-api/";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API = `${API_BASE}academic-activities`;
+const FILE_BASE = API_BASE;
 async function getCsrfToken() {
-    const response = await fetch(
-        "http://localhost/professor-api/auth/session.php",
-        {
-            method: "GET",
-            credentials: "include"
-        }
-    );
-    if (!response.ok) {
-        throw new Error("Session expired. Please log in again.");
+  const response = await fetch(
+    `${API_BASE}auth/session.php`,
+    {
+      method: "GET",
+      credentials: "include"
     }
-    const data = await response.json();
-    if (!data.authenticated || !data.csrf_token) {
-        throw new Error("CSRF token not available.");
-    }
-    return data.csrf_token;
+  );
+  if (!response.ok) {
+    throw new Error("Session expired. Please log in again.");
+  }
+  const data = await response.json();
+  if (!data.authenticated || !data.csrf_token) {
+    throw new Error("CSRF token not available.");
+  }
+  return data.csrf_token;
 }
 const TYPES = [
   "Workshop",
@@ -57,20 +62,32 @@ const emptyForm = {
   description: "",
 };
 
+
 async function request(endpoint, options = {}) {
+  const method = (options.method || "GET").toUpperCase();
+  const headers = new Headers(options.headers || {});
+
+  if (["POST", "PUT", "PATCH", "DELETE"].includes(method)) {
+    const csrfToken = await getCsrfToken();
+    headers.set("X-CSRF-Token", csrfToken);
+  }
+
   const response = await fetch(API + endpoint, {
-    credentials: "include",
     ...options,
+    method,
+    headers,
+    credentials: "include",
   });
 
   const data = await response.json();
 
-  if (!response.ok || !data.success) {
+  if (!response.ok || data.success === false) {
     throw new Error(data.message || "Request failed.");
   }
 
   return data;
 }
+
 
 export default function AcademicActivitiesAdmin() {
   const [activities, setActivities] = useState([]);

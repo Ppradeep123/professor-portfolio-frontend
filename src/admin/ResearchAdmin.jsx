@@ -1,24 +1,36 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const API = "http://localhost/professor-api/research";
+
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API = `${API_BASE}research`;
+
 async function getCsrfToken() {
   const response = await fetch(
-    "http://localhost/professor-api/auth/session.php",
+    `${API_BASE}auth/session.php`,
     {
       method: "GET",
-      credentials: "include"
+      credentials: "include",
     }
   );
+
   if (!response.ok) {
     throw new Error("Session expired. Please log in again.");
   }
+
   const data = await response.json();
+
   if (!data.authenticated || !data.csrf_token) {
     throw new Error("CSRF token not available.");
   }
+
   return data.csrf_token;
 }
+
 const emptyForm = {
   title: "",
   research_area: "",
