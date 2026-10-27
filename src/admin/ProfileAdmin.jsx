@@ -2,9 +2,10 @@
 import { useEffect, useState } from "react";
 
 
-const API_BASE =
-    import.meta.env.VITE_API_BASE_URL ||
-    "http://professor-portfolio-api.onrender.com";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://professor-portfolio-api.onrender.com/"
+).replace(/\/+$/, "") + "/";
 
 const API = `${API_BASE}profile/`;
 
