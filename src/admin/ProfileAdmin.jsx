@@ -6,7 +6,7 @@ const API_BASE =
     import.meta.env.VITE_API_BASE_URL ||
     "http://professor-portfolio-api.onrender.com";
 
-const API = `${API_BASE}profile`;
+const API = `${API_BASE}profile/`;
 
 async function getCsrfToken() {
     const response = await fetch(

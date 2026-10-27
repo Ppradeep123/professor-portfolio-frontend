@@ -22,7 +22,7 @@ const API_BASE = (
   "http://professor-portfolio-api.onrender.com"
 ).replace(/\/+$/, "") + "/";
 
-const API = `${API_BASE}achievements`;
+const API = `${API_BASE}achievements/`;
 const FILE_BASE = API_BASE;
 
 async function getCsrfToken() {

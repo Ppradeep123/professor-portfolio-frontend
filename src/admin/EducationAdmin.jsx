@@ -5,7 +5,7 @@ const API_BASE = (
     "http://professor-portfolio-api.onrender.com"
 ).replace(/\/+$/, "") + "/";
 
-const API = `${API_BASE}education`;
+const API = `${API_BASE}education/`;
 
 async function getCsrfToken() {
     const response = await fetch(

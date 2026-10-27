@@ -21,26 +21,7 @@ const fileUrl = (path) => {
   return `${API_BASE.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`;
 };
 
-const interests = [
-  {
-    icon: "✦",
-    title: "Artificial Intelligence",
-    description:
-      "Exploring intelligent systems and their real-world applications.",
-  },
-  {
-    icon: "◈",
-    title: "Machine Learning",
-    description:
-      "Developing innovative data-driven solutions and models.",
-  },
-  {
-    icon: "✳",
-    title: "Data Science",
-    description:
-      "Discovering meaningful insights through research and analytics.",
-  },
-];
+
 
 const quickLinks = [
   {
