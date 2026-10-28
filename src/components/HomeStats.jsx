@@ -1,9 +1,12 @@
 
 import { useEffect, useState } from "react";
 
-const API_BASE =
-    import.meta.env.VITE_API_BASE_URL ||
-    "http://professor-portfolio-api.onrender.com";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+
 
 export default function HomeStats({ profile }) {
     const [counts, setCounts] = useState({

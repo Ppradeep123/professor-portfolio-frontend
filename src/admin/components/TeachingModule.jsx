@@ -1,8 +1,13 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const API = "http://professor-portfolio-api.onrender.comteaching/manage.php";
 
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API = `${API_BASE}teaching/manage.php`;
 export default function TeachingModule({
   module,
   title,

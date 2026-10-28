@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-const API_URL = "http://professor-portfolio-api.onrender.comeducation/get.php";
+
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API_URL = `${API_BASE}education/get.php`;
+
 export default function EducationSection() {
     const [education, setEducation] = useState([]);
     const [loading, setLoading] = useState(true);

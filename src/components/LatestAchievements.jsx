@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Award, ArrowRight } from "lucide-react";
 
-const API =
-  (import.meta.env.VITE_API_BASE_URL ||
-    "http://professor-portfolio-api.onrender.com").replace(/\/+$/, "") +
-  "/achievements/get.php";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API = `${API_BASE}achievements/get.php`;
 
 export default function LatestAchievements() {
   const [achievements, setAchievements] = useState([]);

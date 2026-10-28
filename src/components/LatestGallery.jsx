@@ -8,13 +8,14 @@ import {
   RefreshCw,
 } from "lucide-react";
 
-const API_BASE =
+
+const API_BASE = (
   import.meta.env.VITE_API_BASE_URL ||
-  "http://professor-portfolio-api.onrender.com";
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "");
 
 const apiUrl = (path) =>
-  `${API_BASE.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`;
-
+  `${API_BASE}/${path.replace(/^\/+/, "")}`;
 function getImageUrl(path) {
   if (
     !/^uploads\/gallery\/[a-f0-9]{32}\.(jpg|jpeg|png|webp)$/i.test(
