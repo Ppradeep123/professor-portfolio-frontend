@@ -77,7 +77,12 @@ function Publications() {
     return styles[type] || "bg-gray-100 text-gray-700";
   };
   const [filter, setFilter] = useState("All");
-  const API = "http://professor-portfolio-api.onrender.compublications/get.php";
+  const API_BASE = (
+    import.meta.env.VITE_API_BASE_URL ||
+    "http://localhost/professor-api/"
+  ).replace(/\/+$/, "") + "/";
+
+  const API = `${API_BASE}publications/get.php`;
   useEffect(() => {
     const controller = new AbortController();
 
@@ -284,7 +289,7 @@ function Publications() {
 
                     {item.pdf_file && (
                       <a
-                        href={`http://professor-portfolio-api.onrender.com${item.pdf_file}`}
+                        href={`${API_BASE.replace(/\/+$/, "")}/${String(item.pdf_file).replace(/^\/+/, "")}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#41634C] underline font-medium"

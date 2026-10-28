@@ -1,7 +1,11 @@
 
-
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
 
 export default function ProtectedRoute({ children }) {
   const [status, setStatus] = useState("loading");
@@ -9,8 +13,8 @@ export default function ProtectedRoute({ children }) {
   useEffect(() => {
     let active = true;
 
-    fetch("http://professor-portfolio-api.onrender.comauth/session.php", {
-      credentials: "include"
+    fetch(`${API_BASE}auth/session.php`, {
+      credentials: "include",
     })
       .then((response) => {
         if (active) {
@@ -18,7 +22,9 @@ export default function ProtectedRoute({ children }) {
         }
       })
       .catch(() => {
-        if (active) setStatus("unauthorized");
+        if (active) {
+          setStatus("unauthorized");
+        }
       });
 
     return () => {

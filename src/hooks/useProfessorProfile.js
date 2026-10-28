@@ -5,14 +5,17 @@ export default function useProfessorProfile() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
+  const API_BASE = (
+    import.meta.env.VITE_API_BASE_URL ||
+    "http://localhost/professor-api/"
+  ).replace(/\/+$/, "") + "/";
   useEffect(() => {
     let active = true;
 
     async function fetchProfile() {
       try {
         const response = await fetch(
-          "http://professor-portfolio-api.onrender.comprofile/get.php"
+          `${API_BASE}profile/get.php`
         );
 
         if (!response.ok) {

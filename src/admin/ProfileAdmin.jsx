@@ -2,15 +2,13 @@
 import { useEffect, useState } from "react";
 
 
-const API_BASE = (
-  import.meta.env.VITE_API_BASE_URL ||
-  "https://professor-portfolio-api.onrender.com/"
-).replace(/\/+$/, "") + "/";
-const API = `${API_BASE}profile/`;
 
-fetch(`${API}get.php`, {
-  credentials: "include",
-});
+const API_BASE = (
+    import.meta.env.VITE_API_BASE_URL ||
+    "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API = `${API_BASE}profile/`;
 
 async function getCsrfToken() {
     const response = await fetch(

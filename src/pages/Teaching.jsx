@@ -22,7 +22,10 @@ import {
   MonitorPlay,
 } from "lucide-react";
 
-const BASE_API = "http://professor-portfolio-api.onrender.comteaching";
+const BASE_API = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "teaching";
 
 const DAYS = [
   "Monday",
@@ -849,7 +852,10 @@ export default function Teaching() {
           reloadKey={reloadKey}
           onRetry={retry}
         />
-
+        <MethodsSection
+          reloadKey={reloadKey}
+          onRetry={retry}
+        />
 
 
         {/* BOTTOM BANNER */}

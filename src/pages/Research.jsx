@@ -7,7 +7,12 @@ function Research() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const API = "http://professor-portfolio-api.onrender.comresearch/get.php";
+  const API_BASE = (
+    import.meta.env.VITE_API_BASE_URL ||
+    "http://localhost/professor-api/"
+  ).replace(/\/+$/, "") + "/";
+
+  const API = `${API_BASE}research/get.php`;
   const [publications, setPublications] = useState([]);
   const [loadingPublications, setLoadingPublications] = useState(true);
   const [publicationError, setPublicationError] = useState("");
@@ -276,8 +281,8 @@ function Research() {
                 // URL Helpers
                 const pdfUrl = publication.pdf_file
                   ? new URL(
-                    publication.pdf_file,
-                    "http://professor-portfolio-api.onrender.com"
+                    publication.pdf_file.replace(/^\/+/, ""),
+                    API_BASE
                   ).href
                   : null;
 

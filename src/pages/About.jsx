@@ -124,7 +124,10 @@ function About() {
             <div className="relative bg-white p-3 rounded-[2rem] shadow-xl">
               {profile.profile_photo && (
                 <img
-                  src={`http://professor-portfolio-api.onrender.com${profile.profile_photo}`}
+                  src={`${(
+                    import.meta.env.VITE_API_BASE_URL ||
+                    "http://localhost/professor-api/"
+                  ).replace(/\/+$/, "")}/${profile.profile_photo.replace(/^\/+/, "")}`}
                   alt={profile.full_name}
                   className="w-full h-[400px] md:h-[450px] object-cover rounded-[1.5rem]"
                   onError={(e) => {

@@ -18,8 +18,13 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-const API = "http://professor-portfolio-api.onrender.come-content/";
-const FILE_BASE = "http://professor-portfolio-api.onrender.com";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API = `${API_BASE}e-content/`;
+const FILE_BASE = API_BASE.replace(/\/$/, "");
 
 const CONTENT_TYPES = [
   "PDF",

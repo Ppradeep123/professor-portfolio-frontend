@@ -6,9 +6,10 @@ import useProfessorProfile from "../hooks/useProfessorProfile";
 import LatestGallery from "../components/LatestGallery";
 import LatestAchievements from "../components/LatestAchievements";
 import HomeStats from "../components/HomeStats";
-const API_BASE =
+const API_BASE = (
   import.meta.env.VITE_API_BASE_URL ||
-  "http://professor-portfolio-api.onrender.com";
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
 
 const fileUrl = (path) => {
   if (!path) return "";

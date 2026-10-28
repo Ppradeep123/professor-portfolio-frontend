@@ -18,10 +18,14 @@ import {
   Filter,
 } from "lucide-react";
 
-const API =
-  "http://professor-portfolio-api.onrender.comachievements/get.php";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
 
-const FILE_BASE = "http://professor-portfolio-api.onrender.com";
+const API = `${API_BASE}achievements/get.php`;
+
+const FILE_BASE = API_BASE.replace(/\/$/, "");
 
 const TYPES = [
   "All",

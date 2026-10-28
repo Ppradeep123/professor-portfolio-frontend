@@ -5,9 +5,8 @@ import { Bell, Mail, ArrowRight } from "lucide-react";
 
 const API_BASE = (
   import.meta.env.VITE_API_BASE_URL ||
-  "http://professor-portfolio-api.onrender.com"
+  "http://localhost/professor-api"
 ).replace(/\/+$/, "");
-
 const stats = [
   {
     title: "Publications",

@@ -1,9 +1,11 @@
 
-const API_BASE =
-  import.meta.env.VITE_API_BASE_URL ||
-  "http://professor-portfolio-api.onrender.com";
 
-const API = `${API_BASE.replace(/\/+$/, "")}/publications`;
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API = `${API_BASE}publications`;
 
 async function getCsrfToken() {
   const response = await fetch(

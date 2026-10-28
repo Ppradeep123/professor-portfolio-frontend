@@ -14,8 +14,13 @@ import {
   FolderOpen,
 } from "lucide-react";
 
-const API = "http://professor-portfolio-api.onrender.comgallery/get.php";
-const FILE_BASE = "http://professor-portfolio-api.onrender.com";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
+
+const API = `${API_BASE}gallery/get.php`;
+const FILE_BASE = API_BASE.replace(/\/$/, "");
 
 function getImageUrl(path) {
   if (

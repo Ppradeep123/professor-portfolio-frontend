@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useProfessorProfile from "../hooks/useProfessorProfile";
 
-const API_BASE =
+const API_BASE = (
   import.meta.env.VITE_API_BASE_URL ||
-  "http://professor-portfolio-api.onrender.com";
-
+  "http://localhost/professor-api/"
+).replace(/\/+$/, "") + "/";
 const initialForm = {
   name: "",
   email: "",
@@ -101,7 +101,7 @@ function Contact() {
 
     try {
       const response = await fetch(
-        `${API_BASE.replace(/\/+$/, "")}/contact/submit.php`,
+       `${API_BASE}contact/submit.php`,
         {
           method: "POST",
           headers: {

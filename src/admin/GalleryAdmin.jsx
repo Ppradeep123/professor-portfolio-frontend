@@ -24,10 +24,11 @@ import {
 
 const API_BASE = (
   import.meta.env.VITE_API_BASE_URL ||
-  "http://professor-portfolio-api.onrender.com"
+  "http://localhost/professor-api/"
 ).replace(/\/+$/, "") + "/";
 
 const API = `${API_BASE}gallery/`;
+
 const FILE_BASE = API_BASE;
 async function getCsrfToken() {
   const response = await fetch(
