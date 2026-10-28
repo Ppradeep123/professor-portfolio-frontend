@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 
 const API_BASE = (
     import.meta.env.VITE_API_BASE_URL ||
-    "http://localhost/professor-api/"
-).replace(/\/+$/, "") + "/";
+    "http://localhost/professor-api"
+).replace(/\/+$/, "");
 
-const API = `${API_BASE}profile/`;
+const API = `${API_BASE}/profile`;
 
 async function getCsrfToken() {
     const response = await fetch(
@@ -171,17 +171,14 @@ export default function ProfileAdmin() {
         try {
             const csrfToken = await getCsrfToken();
 
-            const response = await fetch(
-                `${API}/upload_photo.php`,
-                {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        "X-CSRF-Token": csrfToken
-                    },
-                    body: formData
-                }
-            );
+            const response = await fetch(`${API}/upload_photo.php`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "X-CSRF-Token": csrfToken
+                },
+                body: formData
+            });
 
             const data = await response.json();
 
